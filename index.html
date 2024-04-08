@@ -222,6 +222,36 @@
 
   </footer>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Function to make Ajax call and update HTML
+        function fetchData() {
+            $.ajax({
+                url: 'http://127.0.0.1:5500/index%20copy.html',
+                type: 'GET',
+                success: function(data) {
+                    var html = '';
+                    data.forEach(function(item) {
+                        html += '<div>';
+                        html += '<h2>' + item.title + '</h2>'; 
+                        html += '<p>' + item.description + '</p>';
+                        html += '</div>';
+                    });
+                    $('#data-container').html(html);
+                },
+                error: function(error) {
+                    console.log('Error:', error);
+                    $('#data-container').html('Error fetching data');
+                }
+            });
+        }
+
+        // Call the fetchData function when the page loads
+        fetchData();
+    });
+</script>
+  
 </body>
 
 </html>
